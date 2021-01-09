@@ -13,7 +13,8 @@ public class School extends Building {
 	 * Initializes School with no parameters
 	 */
 	School(){
-		super("[School]","[Address]");
+		super();
+		this.name = "[School]";
 	}
 
 	/**
@@ -21,7 +22,8 @@ public class School extends Building {
 	 * @param name is the name of the School
 	 */
 	School(String name){
-		super(name,"[Address]");
+		super();
+		this.name = name;
 	}
 	
 	/**
@@ -29,8 +31,8 @@ public class School extends Building {
 	 * @param name is the name of the School
 	 * @param address is the label of the address
 	 */
-	School(String name, String address){
-		super(name, address);
+	School(String name, int street, int buildingNum){
+		super(name, street, buildingNum);
 	}
 	
 	/**

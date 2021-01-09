@@ -10,7 +10,7 @@ public class Kid extends Person{
 	 * Implements Kid class with no parameters
 	 */
 	Kid(){
-		super();
+		super("Kid "+numCount++,5);
 		favCandy = "Pure Sugar";
 	}
 	
@@ -19,7 +19,7 @@ public class Kid extends Person{
 	 * @param candy - Kid's favorite candy
 	 */
 	Kid(String candy){
-		super();
+		super("Kid "+numCount++,5);
 		favCandy = candy;
 	}
 	
@@ -30,6 +30,8 @@ public class Kid extends Person{
 	 */
 	Kid(String name, int age){
 		super(name, age);
+		//for accuracy, make sure valid ages of children
+		assert (age>=0 && age <18);
 		favCandy = "Pure Sugar";
 	}
 	/**
@@ -40,6 +42,8 @@ public class Kid extends Person{
 	 */
 	Kid(String candy,String name, int age){
 		super(name,age);
+		//for accuracy, make sure valid ages of children + a text in candy
+		assert (age>=0 && age <18 && candy.length()>0);
 		favCandy = candy;
 	}
 	
@@ -52,6 +56,8 @@ public class Kid extends Person{
 	 */
 	Kid(String candy,String name, int age, int phoneNum){
 		super(name,age, phoneNum);
+		//for accuracy, make sure valid ages of children + a text in candy
+		assert (age>=0 && age <18 && candy.length()>0);
 		favCandy = candy;
 	}
 }

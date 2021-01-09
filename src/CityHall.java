@@ -13,7 +13,8 @@ public class CityHall extends Building {
 	 * Initialize CityHall without parameters
 	 */
 	CityHall(){
-		super("City Hall", "[Address]");
+		super();
+		this.name = "City Hall";
 	}
 	
 	/**
@@ -21,6 +22,7 @@ public class CityHall extends Building {
 	 * @param name - the name of the city this city hall belongs to
 	 */
 	CityHall(String name){
-		super(name+" City Hall", "[Address]");
+		super();
+		this.name = name + " City Hall";
 	}
 }

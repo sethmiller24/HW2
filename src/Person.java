@@ -8,7 +8,7 @@ public class Person {
 	protected String name;
 	private int age;
 	//counter to ensure unique phone numbers and default names
-	private static int numCount = 1;
+	protected static int numCount = 1;
 	protected String phoneNum;
 	
 	/**
@@ -25,6 +25,8 @@ public class Person {
 	 */
 	Person(String name, int age){
 		init();
+		//ensure there is a valid age and the name is not empty
+		assert(age>=0 && name.length()>0);
 		this.name = name;
 		this.age = age;
 	}
@@ -37,6 +39,8 @@ public class Person {
 	 */
 	Person(String name, int age, int phoneNum){
 		init();
+		//ensure there is a valid age and the name is not empty
+		assert(age>=0 && name.length()>0);
 		this.name = name;
 		this.age = age;
 		this.phoneNum = ((phoneNum%10000000)+10000000)+"";

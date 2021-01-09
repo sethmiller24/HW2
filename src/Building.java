@@ -6,7 +6,7 @@ import java.util.ArrayList;
  *@version 1.0.0, January 7th 2021
  */
 public class Building {
-	private String name;
+	protected String name;
 	private String address;
 	//To help differentiate buildings with default names
 	private static int buildingCount = 0;
@@ -22,13 +22,23 @@ Building(){
 }
 
 /**
- * Initializes Building with given name and address
+ * Initializes Building with given name
  * @param name is the name of the School
- * @param address is the label of the address
  */
-Building(String name, String address){
+Building(String name){
+	//there needs to be content to save
+	assert(name.length()>0 && address.length()>0);
 	this.name = name;
-	this.address = address;
+	address = "[Address]";
+}
+
+/**
+ * Sets address based on ArrayList buildings location once built in City.Java
+ * @param street - array index
+ * @param buildingNum - arrayList index
+ */
+public void setAddress(int street, int buildingNum) {
+	this.address = buildingNum + " " + street +" street";
 }
 
 /**

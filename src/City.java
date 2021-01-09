@@ -7,7 +7,10 @@ import java.util.ArrayList;
  */
 public class City {
 	private String name;
-	private ArrayList buildings = new ArrayList <Building>();
+	//Represents a collection of streets
+	//Each street a collection of buildings
+	private ArrayList <Building>[] buildings;
+	private static int currBlock = 0;
 	private ArrayList people =  new ArrayList <Person>();
 	
 	/**
@@ -15,8 +18,7 @@ public class City {
 	 */
 	City(){
 		name = "City";
-		populateCity(new CityHall());
-		populateCity(new School(name+" School"));
+		init();
 	}
 	
 	/**
@@ -25,8 +27,25 @@ public class City {
 	 */
 	City(String name){
 		this.name = name;
-		populateCity(new CityHall(name));
-		populateCity(new School(name+" School"));
+		init();
+	}
+	
+	/**
+	 * Initialize the City given the name
+	 * @param name - specifies the name of the City
+	 */
+	City(String name, int numStreets){
+		this.name = name;
+		init();
+	}
+	
+	private void init() {
+		buildings = new ArrayList[5];
+		//City Hall should wind up at buildings [0][0]
+		populateCity(new CityHall(this.name),0);
+		//School should wind up at buildings [0][1]
+		populateCity(new School(this.name+" School"), 0);
+		
 	}
 	
 	/**
@@ -49,30 +68,58 @@ public class City {
 	 */
 	public void populateCity(Person add) {
 		people.add(add);
-		if (add instanceof Teacher)
-			((Building) buildings.get(1)).addOccupant(add);
-		else if (add instanceof Police)
-			((Building) buildings.get(0)).addOccupant(add);
-		else
-		((Building) buildings.get(buildings.size()-1)).addOccupant(add);
+		if (add instanceof Police)
+			buildings[0].get(0).addOccupant(add);
+		else {
+			//unless a specific address is given, defaults to be put in school for simplicity
+			buildings[0].get(1).addOccupant(add);
+		}
+			
 	}
 	
 	/**
-	 * Represent how new Buildings can be built
+	 * Models how new people can move into the city
+	 * @param add - a new person (or even a Teacher, Police or a Kid) for the people array
+	 */
+	public void populateCity(Person add, int street, int buildingNum) {
+		assert(street>=0 && street < buildings.length && buildingNum >= 0 && buildingNum < buildings[street].size());
+		people.add(add);
+		buildings[0].get(0).addOccupant(add);
+	}
+	
+	/**
+	 * Represent how new Buildings can be built, defaulting on the emptiest street
 	 * @param add - building to add to buildings array
 	 */
 	public void populateCity(Building add) {
-		buildings.add(add);
+		buildings[currBlock++].add(add);
+		if (currBlock>=buildings.length) {
+			currBlock = 0;
+		}
 	}
-
+	
+	/**
+	 * Represent how new Buildings can be built, defaulting on the emptiest street
+	 * @param add - building to add to buildings array
+	 * @param street - the street (ArrayList) to place the new Building
+	 */
+	public void populateCity(Building add, int street) {
+		//to ensure valid streets are chosen
+		assert(street >= 0 && street < buildings.length);
+		buildings[street].add(add);
+	}
+	
+	
 	/**
 	 * works as a toString for the occupants in buildings
 	 * @return passBack - an account of all occupants in each building
 	 */
 	public String readCityPopulus() {
 		String passBack = "";
-		for (int i = 0; i < buildings.size(); i++) {
-			passBack+=((Building) buildings.get(i)).readOccupants() +"\n";
+		for (int i = 0; i < buildings.length; i++) {
+			for (int j = 0; j < buildings[i].size(); j++) {
+				passBack+=buildings[i].get(j).readOccupants() +"\n";
+			}
 		}
 		return passBack;
 	}
