@@ -6,6 +6,13 @@ public class CityTester {
 		
 		for (int i = 0; i < 3; i++) {
 			Bellevue.populateCity(new Building());
+			Bellevue.populateCity(new Building());
+			Bellevue.populateCity(new Building());
+			Bellevue.populateCity(new Building());
+			Bellevue.populateCity(new Building());
+			Bellevue.populateCity(new Building());
+			Bellevue.populateCity(new Building());
+			Bellevue.populateCity(new Building());
 			Bellevue.populateCity(new Person());
 			Bellevue.populateCity(new Kid());
 			Bellevue.populateCity(new Police());

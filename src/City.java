@@ -9,8 +9,9 @@ public class City {
 	private String name;
 	//Represents a collection of streets
 	//Each street a collection of buildings
-	private ArrayList <Building>[] buildings;
-	private static int currBlock = 0;
+	private Building[][] buildings;
+	private int maxBuildings;
+	private int currNumBuildings;
 	private ArrayList people =  new ArrayList <Person>();
 	
 	/**
@@ -26,6 +27,7 @@ public class City {
 	 * @param name - specifies the name of the City
 	 */
 	City(String name){
+		System.out.println("In name constructor");
 		this.name = name;
 		init();
 	}
@@ -35,16 +37,23 @@ public class City {
 	 * @param name - specifies the name of the City
 	 */
 	City(String name, int numStreets){
+		System.out.println("In name + numStreets constructor");
 		this.name = name;
 		init();
+		buildings = new Building [numStreets][5];
+		maxBuildings = numStreets*5;
 	}
 	
 	private void init() {
-		buildings = new ArrayList[5];
+		System.out.println("In init()");
+		//preset to 5 streets x 5 buildings
+		buildings = new Building [5][5];
+		maxBuildings = 25;
+		currNumBuildings = 0;
 		//City Hall should wind up at buildings [0][0]
-		populateCity(new CityHall(this.name),0);
+		this.populateCity(new CityHall(this.name));
 		//School should wind up at buildings [0][1]
-		populateCity(new School(this.name+" School"), 0);
+		this.populateCity(new School(this.name+" School"));
 		
 	}
 	
@@ -69,46 +78,39 @@ public class City {
 	public void populateCity(Person add) {
 		people.add(add);
 		if (add instanceof Police)
-			buildings[0].get(0).addOccupant(add);
+			//Kids and Teachers default to being put in school for simplicity
+			buildings[0][0].addOccupant(add);
+		else if (add instanceof Teacher || add instanceof Kid)
+			//Kids and Teachers default to being put in school for simplicity
+			buildings[0][1].addOccupant(add);
 		else {
-			//unless a specific address is given, defaults to be put in school for simplicity
-			buildings[0].get(1).addOccupant(add);
+			//otherwise, default to be put in the most recently built building
+			buildings[(currNumBuildings-1)/5][(currNumBuildings-1)%5].addOccupant(add);
 		}
 			
 	}
 	
 	/**
-	 * Models how new people can move into the city
-	 * @param add - a new person (or even a Teacher, Police or a Kid) for the people array
-	 */
-	public void populateCity(Person add, int street, int buildingNum) {
-		assert(street>=0 && street < buildings.length && buildingNum >= 0 && buildingNum < buildings[street].size());
-		people.add(add);
-		buildings[0].get(0).addOccupant(add);
-	}
-	
-	/**
 	 * Represent how new Buildings can be built, defaulting on the emptiest street
 	 * @param add - building to add to buildings array
+	 * @return false - there is no more space for buildings in the array
+	 * @return true - added add to the next available empty plot
 	 */
-	public void populateCity(Building add) {
-		buildings[currBlock++].add(add);
-		if (currBlock>=buildings.length) {
-			currBlock = 0;
+	public boolean populateCity(Building add) {
+		System.out.println("Populating with "+add.name);
+		if(currNumBuildings < maxBuildings) {
+			for (int i = 0; i<buildings.length; i++)
+				for (int j = 0; j< buildings[i].length; j++) {
+					if (buildings[i][j]==null) {
+						System.out.println("Adding building to ["+i+"] ["+j+"]");
+						buildings[i][j] = add;
+						currNumBuildings++;
+						return true;
+					}
+				}	
 		}
-	}
-	
-	/**
-	 * Represent how new Buildings can be built, defaulting on the emptiest street
-	 * @param add - building to add to buildings array
-	 * @param street - the street (ArrayList) to place the new Building
-	 */
-	public void populateCity(Building add, int street) {
-		//to ensure valid streets are chosen
-		assert(street >= 0 && street < buildings.length);
-		buildings[street].add(add);
-	}
-	
+			return false;
+	}	
 	
 	/**
 	 * works as a toString for the occupants in buildings
@@ -117,8 +119,9 @@ public class City {
 	public String readCityPopulus() {
 		String passBack = "";
 		for (int i = 0; i < buildings.length; i++) {
-			for (int j = 0; j < buildings[i].size(); j++) {
-				passBack+=buildings[i].get(j).readOccupants() +"\n";
+			for (int j = 0; j < buildings[i].length; j++) {
+				if (buildings[i][j]!=null)
+					passBack+=buildings[i][j].readOccupants() +"\n";
 			}
 		}
 		return passBack;

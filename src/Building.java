@@ -27,7 +27,7 @@ Building(){
  */
 Building(String name){
 	//there needs to be content to save
-	assert(name.length()>0 && address.length()>0);
+	assert(name.length()>0);
 	this.name = name;
 	address = "[Address]";
 }
