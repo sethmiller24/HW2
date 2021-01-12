@@ -13,6 +13,8 @@ public class City {
 	private int maxBuildings;
 	private int currNumBuildings;
 	private ArrayList people =  new ArrayList <Person>();
+	private CityComponent UI;
+	java.net.URL backgroundImgUrl = getClass().getResource("MapBackground.jpeg");
 	
 	/**
 	 * Initialize City given no parameters
@@ -27,9 +29,10 @@ public class City {
 	 * @param name - specifies the name of the City
 	 */
 	City(String name){
-		System.out.println("In name constructor");
 		this.name = name;
 		init();
+		presetCity();
+		showWindow();
 	}
 	
 	/**
@@ -37,24 +40,42 @@ public class City {
 	 * @param name - specifies the name of the City
 	 */
 	City(String name, int numStreets){
-		System.out.println("In name + numStreets constructor");
 		this.name = name;
 		init();
 		buildings = new Building [numStreets][5];
 		maxBuildings = numStreets*5;
+		presetCity();
+		showWindow();
 	}
 	
 	private void init() {
-		System.out.println("In init()");
 		//preset to 5 streets x 5 buildings
 		buildings = new Building [5][5];
 		maxBuildings = 25;
 		currNumBuildings = 0;
+	
+	}
+	
+	/**
+	 * 
+	 */
+	private void presetCity() {
+		for (int i = 0; i< buildings.length; i++) {
+			for (int j = 0; j<buildings[i].length; j++) {
+				buildings[i][j] = new EmptyLot();
+			}
+		}
 		//City Hall should wind up at buildings [0][0]
 		this.populateCity(new CityHall(this.name));
 		//School should wind up at buildings [0][1]
 		this.populateCity(new School(this.name+" School"));
-		
+	}
+	
+	public void showWindow() {
+		assert(buildings.length > 0);
+		UI = new CityComponent();
+		UI.showScreen(buildings.length, buildings[0].length);
+		UI.setButtons(buildings);
 	}
 	
 	/**
@@ -97,13 +118,12 @@ public class City {
 	 * @return true - added add to the next available empty plot
 	 */
 	public boolean populateCity(Building add) {
-		System.out.println("Populating with "+add.name);
 		if(currNumBuildings < maxBuildings) {
 			for (int i = 0; i<buildings.length; i++)
 				for (int j = 0; j< buildings[i].length; j++) {
-					if (buildings[i][j]==null) {
-						System.out.println("Adding building to ["+i+"] ["+j+"]");
+					if (buildings[i][j]instanceof EmptyLot) {
 						buildings[i][j] = add;
+						add.setAddress(i,j);
 						currNumBuildings++;
 						return true;
 					}

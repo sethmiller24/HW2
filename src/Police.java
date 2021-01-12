@@ -13,6 +13,7 @@ public class Police extends Person implements Employee{
 	private int earnings = 0;
 	//Represents rank in police force, determined by payRate
 	PoliceRole role;
+	java.net.URL imgUrl = getClass().getResource("Police.png");
 	
 	/**
 	 * Implements Police with no parameters

@@ -12,7 +12,8 @@ public class Building {
 	private static int buildingCount = 0;
 	//represents people who are inside buildings
 	private ArrayList occupants = new ArrayList<Person>();
-
+	java.net.URL imgUrl = getClass().getResource("Building.png");
+	
 	/**
 	 * Initialize Building without parameters
 	 */

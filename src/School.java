@@ -1,4 +1,7 @@
+import java.awt.Image;
 import java.util.ArrayList;
+
+import javax.print.DocFlavor.URL;
 /**
  * Models a School object, holding teachers and students
  *@author Seth Miller
@@ -8,6 +11,7 @@ public class School extends Building {
 	//Represent how schools have teachers and students
 	private ArrayList teachers = new ArrayList<Teacher>();
 	private ArrayList students = new ArrayList<Kid>();
+	java.net.URL imgUrl = getClass().getResource("School.png");
 	
 	/**
 	 * Initializes School with no parameters
@@ -26,14 +30,6 @@ public class School extends Building {
 		this.name = name;
 	}
 	
-	/**
-	 * Initializes School with given name and address
-	 * @param name is the name of the School
-	 * @param address is the label of the address
-	 */
-	School(String name, int street, int buildingNum){
-		super(name, street, buildingNum);
-	}
 	
 	/**
 	 * Sorts into registry of teachers and student if person is a teacher or kid

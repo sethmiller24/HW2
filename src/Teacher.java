@@ -15,6 +15,9 @@ public class Teacher extends Person implements Employee{
 	private gradeLevel grade;
 	//represents level of education the teacher has
 	private certLevel certification;
+	java.net.URL imgUrl = getClass().getResource("Teacher.png");
+	
+	
 	/**
 	 * Implements Teacher with no parameters
 	 */

@@ -10,6 +10,7 @@ public class Person {
 	//counter to ensure unique phone numbers and default names
 	protected static int numCount = 1;
 	protected String phoneNum;
+	java.net.URL imgUrl = getClass().getResource("Person.png");
 	
 	/**
 	 * Initialize Person with no parameters

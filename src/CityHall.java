@@ -8,6 +8,8 @@ import java.util.ArrayList;
 public class CityHall extends Building {
 	//represents how City Hall is where police reside...?
 	private ArrayList officers = new ArrayList<Police>();
+	java.net.URL imgUrl = getClass().getResource("CityHall.png");
+	
 	
 	/**
 	 * Initialize CityHall without parameters

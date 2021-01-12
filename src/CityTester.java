@@ -4,14 +4,10 @@ public class CityTester {
 	public static void main(String[] args) {
 		City Bellevue = new City("Bellevue");
 		
+		CityComponent test = new CityComponent();
+		
+		/*
 		for (int i = 0; i < 3; i++) {
-			Bellevue.populateCity(new Building());
-			Bellevue.populateCity(new Building());
-			Bellevue.populateCity(new Building());
-			Bellevue.populateCity(new Building());
-			Bellevue.populateCity(new Building());
-			Bellevue.populateCity(new Building());
-			Bellevue.populateCity(new Building());
 			Bellevue.populateCity(new Building());
 			Bellevue.populateCity(new Person());
 			Bellevue.populateCity(new Kid());
@@ -33,6 +29,8 @@ public class CityTester {
 		System.out.println(Bellevue.readCityPopulus());
 		System.out.println(Bellevue.payEmployees());
 		System.out.println(Bellevue.payEmployees());
+		*/
+		
 	}
 
 }

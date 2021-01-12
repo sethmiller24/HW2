@@ -6,6 +6,8 @@
 public class Kid extends Person{
 	String favCandy;
 	
+	java.net.URL imgUrl = getClass().getResource("Kid.png");
+	
 	/**
 	 * Implements Kid class with no parameters
 	 */
