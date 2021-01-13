@@ -1,12 +1,13 @@
+import java.awt.Image;
+
 /**
  * Models Kid class, who are unique in how they alone can like candy
  *@author Seth Miller
  *@version 1.0.0, 07 January 2021
  */
 public class Kid extends Person{
-	String favCandy;
-	
-	java.net.URL imgUrl = getClass().getResource("Kid.png");
+	private String favCandy;
+	private Image imgUrl =   toolkit.createImage("Person.png");
 	
 	/**
 	 * Implements Kid class with no parameters
@@ -61,5 +62,17 @@ public class Kid extends Person{
 		//for accuracy, make sure valid ages of children + a text in candy
 		assert (age>=0 && age <18 && candy.length()>0);
 		favCandy = candy;
+	}
+	
+	public String getCandy() {
+		return favCandy;
+	}
+	
+	/**
+	 * Getter for imgUrl
+	 * @return the image representing Teacher - for UI purposes
+	 */
+	public Image getImage() {
+		return imgUrl;
 	}
 }

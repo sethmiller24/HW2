@@ -12,7 +12,7 @@ public class Building {
 	private static int buildingCount = 0;
 	//represents people who are inside buildings
 	private ArrayList occupants = new ArrayList<Person>();
-	java.net.URL imgUrl = getClass().getResource("Building.png");
+	String imgUrl = "Building.png";
 	
 	/**
 	 * Initialize Building without parameters
@@ -62,4 +62,12 @@ public String readOccupants() {
 	return sumOcc;
 }
 	
+/**
+ *  Getter for url for the image
+ * @return - URL for image for this class
+ */
+public String getURL() {
+	return this.imgUrl;
+}
+
 }

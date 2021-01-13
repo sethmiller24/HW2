@@ -14,7 +14,6 @@ public class City {
 	private int currNumBuildings;
 	private ArrayList people =  new ArrayList <Person>();
 	private CityComponent UI;
-	java.net.URL backgroundImgUrl = getClass().getResource("MapBackground.jpeg");
 	
 	/**
 	 * Initialize City given no parameters
@@ -22,6 +21,7 @@ public class City {
 	City(){
 		name = "City";
 		init();
+		presetCity();
 	}
 	
 	/**
@@ -50,10 +50,9 @@ public class City {
 	
 	private void init() {
 		//preset to 5 streets x 5 buildings
-		buildings = new Building [5][5];
+		buildings = new Building [3][3];
 		maxBuildings = 25;
 		currNumBuildings = 0;
-	
 	}
 	
 	/**
@@ -74,8 +73,7 @@ public class City {
 	public void showWindow() {
 		assert(buildings.length > 0);
 		UI = new CityComponent();
-		UI.showScreen(buildings.length, buildings[0].length);
-		UI.setButtons(buildings);
+		UI.showScreen(buildings);
 	}
 	
 	/**
@@ -131,6 +129,10 @@ public class City {
 		}
 			return false;
 	}	
+	
+	public ArrayList getOccupants() {
+		return people;
+	}
 	
 	/**
 	 * works as a toString for the occupants in buildings

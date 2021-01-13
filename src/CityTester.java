@@ -6,6 +6,8 @@ public class CityTester {
 		
 		CityComponent test = new CityComponent();
 		
+		//CityComponentInterfaceThingy test2 = new CityComponentInterfaceThingy(Bellevue);
+		
 		/*
 		for (int i = 0; i < 3; i++) {
 			Bellevue.populateCity(new Building());

@@ -1,3 +1,5 @@
+import java.awt.Image;
+
 /**
  * Models Police Class who uniquely have police ranks
  *@author Seth Miller
@@ -12,8 +14,8 @@ public class Police extends Person implements Employee{
 	//represents sum of income made
 	private int earnings = 0;
 	//Represents rank in police force, determined by payRate
-	PoliceRole role;
-	java.net.URL imgUrl = getClass().getResource("Police.png");
+	private PoliceRole role;
+	private Image imgURL =  toolkit.createImage("Police.png");
 	
 	/**
 	 * Implements Police with no parameters
@@ -96,7 +98,7 @@ public class Police extends Person implements Employee{
 	 * @return a string compiling all Police attributes
 	 */
 	public String toString() {
-		return super.toString() + " | ID:" + ID +" | Position: " + role;
+		return super.toString() + " | ID:" + ID +" | Position: " + role.toString();
 	}
 	
 	/**
@@ -125,6 +127,22 @@ public class Police extends Person implements Employee{
 	public int getEarnings() {
 		// TODO Auto-generated method stub
 		return earnings;
+	}
+	
+	/**
+	 * Getter for PoliceRole
+	 * @return - a string version of the Enum for this police's role
+	 */
+	public String getRole() {
+		return this.role.toString();
+	}
+	
+	/**
+	 * Getter for imgUrl
+	 * @return the image representing Teacher - for UI purposes
+	 */
+	public Image getImage() {
+		return imgUrl;
 	}
 
 }

@@ -1,3 +1,5 @@
+import java.awt.Image;
+
 /**
  *@author Seth Miller
  *@version 1.0.0, 07 January 2021
@@ -15,7 +17,7 @@ public class Teacher extends Person implements Employee{
 	private gradeLevel grade;
 	//represents level of education the teacher has
 	private certLevel certification;
-	java.net.URL imgUrl = getClass().getResource("Teacher.png");
+	private Image imgUrl =  toolkit.createImage("Teacher.png");
 	
 	
 	/**
@@ -176,6 +178,30 @@ public class Teacher extends Person implements Employee{
 	public int getEarnings() {
 		// TODO Auto-generated method stub
 		return earnings;
+	}
+	
+	/**
+	 * Getter for certification
+	 * @return - a string version of the Enum for certification
+	 */
+	public String getCertLevel() {
+		return this.certification.toString();
+	}
+	
+	/**
+	 * Getter for certification
+	 * @return - a string version of the Enum for the teacher's grade level
+	 */
+	public String getGradeLevel() {
+		return this.grade.toString();
+	}
+	
+	/**
+	 * Getter for imgUrl
+	 * @return the image representing Teacher - for UI purposes
+	 */
+	public Image getImage() {
+		return imgUrl;
 	}
 
 }

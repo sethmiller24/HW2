@@ -1,3 +1,8 @@
+import java.awt.Image;
+import java.awt.Toolkit;
+
+import javax.print.DocFlavor.URL;
+
 /**
  * Models Person class, represents how people typically have a name and age
  *@author Seth Miller
@@ -10,7 +15,8 @@ public class Person {
 	//counter to ensure unique phone numbers and default names
 	protected static int numCount = 1;
 	protected String phoneNum;
-	java.net.URL imgUrl = getClass().getResource("Person.png");
+	Toolkit toolkit = Toolkit.getDefaultToolkit();
+	Image imgUrl = toolkit.createImage("Person.png");
 	
 	/**
 	 * Initialize Person with no parameters
@@ -71,5 +77,13 @@ public class Person {
 	 */
 	public String toString() {
 		return "\n"+name + " | Age: "+ age + " | Phone #" + phoneNum;
+	}
+	
+	/**
+	 * Getter for imgUrl
+	 * @return the image representing Teacher - for UI purposes
+	 */
+	public Image getImage() {
+		return imgUrl;
 	}
 }

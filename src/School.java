@@ -11,7 +11,7 @@ public class School extends Building {
 	//Represent how schools have teachers and students
 	private ArrayList teachers = new ArrayList<Teacher>();
 	private ArrayList students = new ArrayList<Kid>();
-	java.net.URL imgUrl = getClass().getResource("School.png");
+	private String imgUrl =  "School.png";
 	
 	/**
 	 * Initializes School with no parameters
@@ -57,5 +57,13 @@ public class School extends Building {
 		for (int i = 0; i < students.size(); i++) 
 			passBack+=(students.get(i).toString());
 		return passBack;
+	}
+	
+	/**
+	 *  Getter for url for the image, because using Building's would use Building's URL
+	 * @return - URL for image for this class
+	 */
+	public String getURL() {
+		return this.imgUrl;
 	}
 }
