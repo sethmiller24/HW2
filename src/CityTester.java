@@ -4,7 +4,7 @@ public class CityTester {
 	public static void main(String[] args) {
 		City Bellevue = new City("Bellevue");
 		
-		CityComponent test = new CityComponent();
+		CityComponent test = new CityComponent(Bellevue);
 		
 		//CityComponentInterfaceThingy test2 = new CityComponentInterfaceThingy(Bellevue);
 		

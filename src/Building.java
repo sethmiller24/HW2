@@ -50,6 +50,25 @@ public void addOccupant(Person add) {
 	occupants.add(add);
 }
 
+public boolean hasPerson(Person test) {
+	for (int i = 0; i< occupants.size(); i++) {
+		if (occupants.get(i).equals(test)) {
+			return true;
+		}
+	}
+	return false;
+}
+
+public boolean removeOccupant(Person rem) {
+	for (int i = 0; i< occupants.size(); i++) {
+		if (occupants.get(i).equals(rem)) {
+			occupants.remove(i);
+			return true;
+		}
+	}
+	return false;
+}
+
 /**
  * 
  * @return sumOcc - list of occupants in the building

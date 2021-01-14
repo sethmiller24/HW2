@@ -98,7 +98,7 @@ public class Police extends Person implements Employee{
 	 * @return a string compiling all Police attributes
 	 */
 	public String toString() {
-		return super.toString() + " | ID:" + ID +" | Position: " + role.toString();
+		return super.toString() + "\nID:" + ID +" | Position: " + role.toString();
 	}
 	
 	/**

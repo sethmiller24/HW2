@@ -1,7 +1,10 @@
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 
 import javax.print.DocFlavor.URL;
+import javax.swing.JComponent;
 
 /**
  * Models Person class, represents how people typically have a name and age
@@ -9,7 +12,7 @@ import javax.print.DocFlavor.URL;
  *@version 1.0.0, 07 January 2021
  *
  */
-public class Person {
+public class Person extends JComponent{
 	protected String name;
 	private int age;
 	//counter to ensure unique phone numbers and default names
@@ -86,4 +89,6 @@ public class Person {
 	public Image getImage() {
 		return imgUrl;
 	}
+
+	
 }

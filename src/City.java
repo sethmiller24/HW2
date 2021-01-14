@@ -12,8 +12,7 @@ public class City {
 	private Building[][] buildings;
 	private int maxBuildings;
 	private int currNumBuildings;
-	private ArrayList people =  new ArrayList <Person>();
-	private CityComponent UI;
+	private ArrayList <Person> people =  new ArrayList <Person>();
 	
 	/**
 	 * Initialize City given no parameters
@@ -32,7 +31,6 @@ public class City {
 		this.name = name;
 		init();
 		presetCity();
-		showWindow();
 	}
 	
 	/**
@@ -45,7 +43,6 @@ public class City {
 		buildings = new Building [numStreets][5];
 		maxBuildings = numStreets*5;
 		presetCity();
-		showWindow();
 	}
 	
 	private void init() {
@@ -68,13 +65,12 @@ public class City {
 		this.populateCity(new CityHall(this.name));
 		//School should wind up at buildings [0][1]
 		this.populateCity(new School(this.name+" School"));
+		
+		this.populateCity(new Person());
+		this.populateCity(new Person());
+		this.populateCity(new Teacher());
 	}
 	
-	public void showWindow() {
-		assert(buildings.length > 0);
-		UI = new CityComponent();
-		UI.showScreen(buildings);
-	}
 	
 	/**
 	 * for instances of Employee implementing Classes
@@ -132,6 +128,10 @@ public class City {
 	
 	public ArrayList getOccupants() {
 		return people;
+	}
+	
+	public Building[][] getBuildings(){
+		return buildings;
 	}
 	
 	/**

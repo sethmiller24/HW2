@@ -150,7 +150,7 @@ public class Teacher extends Person implements Employee{
 	 * @return a string compiling all Teacher attributes
 	 */
 	public String toString() {
-		return super.toString() + " | ID:" + ID +" | Grade: " + grade +" | Certification Level: " + certification;
+		return super.toString() + "\nID:" + ID +" | Grade: " + grade +" | Certification Level: " + certification;
 	}
 	
 	/**
