@@ -1,1 +1,1 @@
-memberSearchIndex = [];updateSearchResults();
+memberSearchIndex = [{"p":"<Unnamed>","c":"BuildingMenu","l":"actionPerformed(ActionEvent)","u":"actionPerformed(java.awt.event.ActionEvent)"},{"p":"<Unnamed>","c":"BuildingMenu","l":"paintComponent(Graphics)","u":"paintComponent(java.awt.Graphics)"}];updateSearchResults();

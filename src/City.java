@@ -45,10 +45,14 @@ public class City {
 		presetCity();
 	}
 	
+	/**
+	 * A preset for the city
+	 * 3x3 city
+	 */
 	private void init() {
 		//preset to 5 streets x 5 buildings
 		buildings = new Building [3][3];
-		maxBuildings = 25;
+		maxBuildings = 9;
 		currNumBuildings = 0;
 	}
 	
@@ -66,9 +70,13 @@ public class City {
 		//School should wind up at buildings [0][1]
 		this.populateCity(new School(this.name+" School"));
 		
+		this.populateCity(new Building());
+		
 		this.populateCity(new Person());
-		this.populateCity(new Person());
-		this.populateCity(new Teacher());
+		this.populateCity(new Person("Other Person", 19));
+		this.populateCity(new Teacher("Mr. Guy", 12));
+		this.populateCity(new Kid("Jimmothy"));
+		this.populateCity(new Police("Police Guy", 3));
 	}
 	
 	

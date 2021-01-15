@@ -21,6 +21,8 @@ public class Person extends JComponent{
 	Toolkit toolkit = Toolkit.getDefaultToolkit();
 	Image imgUrl = toolkit.createImage("Person.png");
 	
+	int x, y;
+	
 	/**
 	 * Initialize Person with no parameters
 	 */
@@ -65,8 +67,31 @@ public class Person extends JComponent{
 		name = "Person " + (numCount);
 		phoneNum = ""+((numCount++) +1000000);
 		phoneNum = "(509)-" + phoneNum.substring(0, 3) +"-"+ phoneNum.substring(3);
+		setXY(0,0);
 	}
 
+	/**
+	 * Setter for X and Y coordinates, helps with plotting
+	 */
+	public void setXY(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+	
+	/**
+	 * Getter for X coordinate, helps with plotting
+	 */
+	public int getX() {
+		return x;
+	}
+	
+	/**
+	 * Getter for Y coordinate, helps with plotting
+	 */
+	public int getY() {
+		return y;
+	}
+	
 	/**
 	 * Getter for Name
 	 * @return name

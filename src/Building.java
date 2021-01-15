@@ -8,6 +8,11 @@ import java.util.ArrayList;
 public class Building {
 	protected String name;
 	private String address;
+	
+	//also markers for address - helps set coordinates for person class
+	private int street;
+	private int buildingNum;
+	
 	//To help differentiate buildings with default names
 	private static int buildingCount = 0;
 	//represents people who are inside buildings
@@ -40,6 +45,8 @@ Building(String name){
  */
 public void setAddress(int street, int buildingNum) {
 	this.address = buildingNum + " " + street +" street";
+	this.street = street;
+	this.buildingNum = buildingNum;
 }
 
 /**
@@ -47,9 +54,15 @@ public void setAddress(int street, int buildingNum) {
  * @param add represents a person entering this building
  */
 public void addOccupant(Person add) {
+	add.setXY(street, buildingNum);
 	occupants.add(add);
 }
 
+/**
+ *  Helper method to check whether this building holds a specific Person
+ * @param test - the person to check if is in this building
+ * @return - true, is in this building, false, not found in this building
+ */
 public boolean hasPerson(Person test) {
 	for (int i = 0; i< occupants.size(); i++) {
 		if (occupants.get(i).equals(test)) {
@@ -59,6 +72,11 @@ public boolean hasPerson(Person test) {
 	return false;
 }
 
+/**
+ * Represents how a Person can leave a Building - to be used in MousePersonPortion.java
+ * @param rem - the person to be removed 
+ * @return - whether Person rem was successfully removed, False - there was no instance of rem in occupants to remove
+ */
 public boolean removeOccupant(Person rem) {
 	for (int i = 0; i< occupants.size(); i++) {
 		if (occupants.get(i).equals(rem)) {
@@ -87,6 +105,14 @@ public String readOccupants() {
  */
 public String getURL() {
 	return this.imgUrl;
+}
+
+/**
+ * Getter for name of this building
+ * @return - name
+ */
+public String getName() {
+	return name;
 }
 
 }

@@ -139,7 +139,7 @@ public class Police extends Person implements Employee{
 	
 	/**
 	 * Getter for imgUrl
-	 * @return the image representing Teacher - for UI purposes
+	 * @return the image representing Police - for UI purposes
 	 */
 	public Image getImage() {
 		return imgUrl;

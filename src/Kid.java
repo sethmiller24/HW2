@@ -7,7 +7,7 @@ import java.awt.Image;
  */
 public class Kid extends Person{
 	private String favCandy;
-	private Image imgUrl =   toolkit.createImage("Person.png");
+	private Image imgUrl =   toolkit.createImage("Kid.png");
 	
 	/**
 	 * Implements Kid class with no parameters
@@ -70,7 +70,7 @@ public class Kid extends Person{
 	
 	/**
 	 * Getter for imgUrl
-	 * @return the image representing Teacher - for UI purposes
+	 * @return the image representing Kid - for UI purposes
 	 */
 	public Image getImage() {
 		return imgUrl;

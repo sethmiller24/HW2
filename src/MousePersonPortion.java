@@ -11,29 +11,41 @@ import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
 import javax.swing.JComponent;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+/**
+ * Serves as a way to drag around the 
+ * @author Seth Miller
+ *
+ */
 public class MousePersonPortion extends JComponent implements MouseMotionListener, ActionListener{
 int imageX, imageY;
 
 static Graphics2D plane;
 
-static JPanel map;
+private JFrame frame;
+private PersonMenu pm;
 
 private Image img;
 
-boolean draggingImg = false;
 
 Toolkit toolkit = Toolkit.getDefaultToolkit();
+Image background = toolkit.getImage("MapBackground.jpg").getScaledInstance(1500, 900, Image.SCALE_SMOOTH);
+
 
 private City city;
 private Person person;
+private ArrayList <Person> people;
 private Building[][] buildings;	
 	
-	MousePersonPortion(City city, JPanel map,Person _person){
-		this.person = person;
-		this.img = _person.getImage();
-		this.map = map;
+	MousePersonPortion(City city, JFrame frame, PersonMenu pm){
+		this.frame = frame;
+		this.pm = pm;
+		this.people = city.getOccupants();
+		this.person = people.get(pm.getCurrPerson());
+		this.img = person.getImage();
+		
 		init(city);	
 		
 		addMouseMotionListener(this);
@@ -57,15 +69,21 @@ private Building[][] buildings;
 			}
 	}
 	
+	public void updateMouse() {
+		this.person = people.get(pm.getCurrPerson());
+		this.img = person.getImage();
+		setAtBuildingLocation();
+		repaint();
+	}
+	
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		// TODO Auto-generated method stub
-		//if (draggingImg) {
-			imageX = e.getX();
-			imageY = e.getY();
-		//}
+		updateMouse();
+		imageX = e.getX();
+		imageY = e.getY();
 		repaint();
-		draggingImg = false;
+		
 		//System.out.println(img.getSource() + " vs " + e.getSource());
 	}
 
@@ -77,19 +95,24 @@ private Building[][] buildings;
 	
 	public void paint (Graphics g) {
 		plane = (Graphics2D)g;
-		g.drawImage(img, imageX,imageY, map);
+		plane.drawImage(background, 0, 0, this);
+		paintBuildings(plane);
+		plane.drawImage(img, imageX,imageY, this);
 	}
 	
-	
+	public void paintBuildings(Graphics2D g) {
+		buildings = this.city.getBuildings();
+		for (int i = 0; i< buildings.length; i++){
+			for (int j = 0; j< buildings[i].length; j++) {
+				g.drawImage( toolkit.getImage(buildings[i][j].getURL()),i*100,j*100, this);
+			}
+		}
+	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if (e.getSource() == img) {
-			draggingImg = true;
-		}else {
-			draggingImg =false;
-		}
+		updateMouse();
 	}
 	
 }
